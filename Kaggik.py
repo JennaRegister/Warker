@@ -9,7 +9,7 @@ import random
 def make_data(size=100):
     #onset: h coda: N unrestricted: f s n m
     return [FunctionData(input=[],
-                         output={'k i s': 100, 'm i m': 100, 'n a s': 100, 'm a k': 100, 'h i s': 100, 'm i f': 100, 's a f': 100, 'n a ng': 100, 'm a s': 100, 'k i m': 100, 'g a k': 100, 'm i s': 100, 's i f': 100, 'h a n': 100, 'n i n': 100, 's a n': 100, 'f i f': 100, 's i n': 100, 'm a n': 100, 'n a m': 100, 'f a m': 100, 'n i f': 100, 'k i N': 100, 'g a s': 100, 'f a n': 100, 'f a s': 100, 'm a f': 100, 'g a ng': 100, 'h a s': 100, 'n a f': 100, 'n i s': 100, 'k i n': 100, 'f a k': 100, 'n i g': 100, 'k i g': 100, 'h i g': 100, 'g a m': 100, 'k i f': 100, 'h a k': 100, 'h i N': 100, 's a ng': 100, 'f i m': 100, 'h a m': 100, 'm a ng': 100, 's i N': 100, 's i g': 100, 'n a n': 100, 's a m': 100, 'h i f': 100, 'm i g': 100, 's i s': 100, 'm i n': 100, 'h i n': 100, 'm i N': 100, 'f i n': 100, 'h a ng': 100, 's i m': 100, 's a k': 100, 'f i g': 100, 'n a k': 100, 'g a n': 100, 'h a f': 100, 'm a m': 100, 'g a f': 100, 'f i s': 100, 'n i N': 100})]
+                         output={'k i s': 100, 'm i m': 100, 'n a s': 100, 'm a k': 100, 'h i s': 100, 'm i f': 100, 's a f': 100, 'n a N': 100, 'm a s': 100, 'k i m': 100, 'g a k': 100, 'm i s': 100, 's i f': 100, 'h a n': 100, 'n i n': 100, 's a n': 100, 'f i f': 100, 's i n': 100, 'm a n': 100, 'n a m': 100, 'f a m': 100, 'n i f': 100, 'k i N': 100, 'g a s': 100, 'f a n': 100, 'f a s': 100, 'm a f': 100, 'g a N': 100, 'h a s': 100, 'n a f': 100, 'n i s': 100, 'k i n': 100, 'f a k': 100, 'n i g': 100, 'k i g': 100, 'h i g': 100, 'g a m': 100, 'k i f': 100, 'h a k': 100, 'h i N': 100, 's a N': 100, 'f i m': 100, 'h a m': 100, 'm a N': 100, 's i N': 100, 's i g': 100, 'n a n': 100, 's a m': 100, 'h i f': 100, 'm i g': 100, 's i s': 100, 'm i n': 100, 'h i n': 100, 'm i N': 100, 'f i n': 100, 'h a N': 100, 's i m': 100, 's a k': 100, 'f i g': 100, 'n a k': 100, 'g a n': 100, 'h a f': 100, 'm a m': 100, 'g a f': 100, 'f i s': 100, 'n i N': 100})]
 
 
 
@@ -39,9 +39,9 @@ grammar.add_rule('SET', '"%s"', ['STRING'], 1.0)
 grammar.add_rule('STRING', '%s%s', ['TERMINAL', 'STRING'], 1.0)
 grammar.add_rule('STRING', '%s', ['TERMINAL'], 1.0)
 
-grammar.add_rule('EXPR', 'if_', ['BOOL', 'EXPR', 'EXPR'], 1./10)
+grammar.add_rule('EXPR', 'if_', ['BOOL', 'EXPR', 'EXPR'], 1./5)
 grammar.add_rule('BOOL', 'equal_', ['EXPR', 'EXPR'], 1./10)
-grammar.add_rule('BOOL', 'flip_', [''], 1./7)
+grammar.add_rule('BOOL', 'flip_', [''], 1./5)
 
 grammar.add_rule('SET', 'vowels_()', None, 1.0)
 #if sample(vowels) equals 'a': cons(cons(sample("ghfsnm"),'a',sample("kNfsnm")
@@ -60,9 +60,9 @@ grammar.add_rule('TERMINAL', 'h', None, TERMINAL_WEIGHT)
 grammar.add_rule('TERMINAL', 'N', None, TERMINAL_WEIGHT)
 
 ## Allow lambda abstraction
-grammar.add_rule('EXPR', 'apply_', ['LAMBDAARG', 'LAMBDATHUNK'], 1./10)
+'''grammar.add_rule('EXPR', 'apply_', ['LAMBDAARG', 'LAMBDATHUNK'], 1./10)
 grammar.add_rule('LAMBDAARG',   'lambda', ['EXPR'], 1./10, bv_type='EXPR', bv_args=[] )
-grammar.add_rule('LAMBDATHUNK', 'lambda', ['EXPR'], 1./10, bv_type=None, bv_args=None ) # A thunk
+grammar.add_rule('LAMBDATHUNK', 'lambda', ['EXPR'], 1./10, bv_type=None, bv_args=None ) # A thunk'''
 
 
 from LOTlib.Hypotheses.Likelihoods.StochasticFunctionLikelihood import StochasticFunctionLikelihood
